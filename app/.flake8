@@ -1,0 +1,5 @@
+[flake8]
+ignore = E501
+exclude = .git,__pycache__,venv, __init__.py, views.py, settings.py ./room, ./reservation, ./employee admin.py,
+max-line-length = 88
+django-settings-module = config.settings
