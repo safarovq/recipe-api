@@ -9,5 +9,23 @@ services:
     volumes:
       - ./app:/app
     command: >
-      sh -c "python manage.py runserver 0.0.0.0:8000"
-      sh -c "flake8"
+      sh -c "python manage.py runserver 0.0.0.0:8000 && flake8"
+    environment:
+      - DB_HOST=db
+      - DB_USER=savarov
+      - DB_PASSWORD=safarov
+      - DB_NAME=safarov
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=savarov
+      - POSTGRES_PASSWORD=safarov
+      - POSTGRES_DB=safarov
+
+volumes:
+  dev-db-data:
